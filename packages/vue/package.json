@@ -1,0 +1,46 @@
+{
+  "name": "@cloudflare/agents-vue",
+  "version": "0.1.0",
+  "description": "Vue 3 bindings for Cloudflare Agents",
+  "keywords": [
+    "cloudflare",
+    "agents",
+    "vue",
+    "composables"
+  ],
+  "type": "module",
+  "repository": {
+    "directory": "packages/vue",
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/agents.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cloudflare/agents/issues"
+  },
+  "devDependencies": {
+    "vue": "^3.3.0"
+  },
+  "peerDependencies": {
+    "agents": ">=0.8.7 <1.0.0",
+    "vue": "^3.3.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "author": "Cloudflare Inc.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsx ./scripts/build.ts"
+  }
+}
