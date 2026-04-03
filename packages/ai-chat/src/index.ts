@@ -95,6 +95,7 @@ function isValidMessageStructure(msg: unknown): msg is ChatMessage {
  * because this is the wire format. Zod schemas cannot be serialized.
  */
 export type { ClientToolSchema } from "agents/chat";
+export type { OpenAPIToolSchema } from "agents/chat";
 
 export type MessageConcurrency =
   | "queue"
@@ -195,6 +196,7 @@ export type SaveMessagesResult = {
 };
 
 export { createToolsFromClientSchemas } from "agents/chat";
+export { toAISDKTools } from "agents/chat";
 
 const decoder = new TextDecoder();
 
