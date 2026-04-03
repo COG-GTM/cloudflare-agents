@@ -35,6 +35,8 @@ export {
   type ClientToolSchema
 } from "./client-tools";
 
+export { toAISDKTools, type OpenAPIToolSchema } from "./openapi-tools";
+
 export { CHAT_MESSAGE_TYPES } from "./protocol";
 
 export {
