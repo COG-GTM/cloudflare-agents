@@ -2065,10 +2065,12 @@ export class Agent<
     error: unknown
   ): void | Promise<void>;
   override onError(error: unknown): void | Promise<void>;
-  override onError(connectionOrError: Connection | unknown, error?: unknown) {
-    let theError: unknown;
-    if (connectionOrError && error) {
-      theError = error;
+  override onError(
+    connectionOrError: Connection | unknown,
+    ...rest: [unknown] | []
+  ) {
+    if (rest.length === 1) {
+      const theError = rest[0];
       // this is a websocket connection error
       console.error(
         "Error on websocket connection:",
@@ -2078,13 +2080,14 @@ export class Agent<
       console.error(
         "Override onError(connection, error) to handle websocket connection errors"
       );
+      throw theError;
     } else {
-      theError = connectionOrError;
+      const theError = connectionOrError;
       // this is a server error
       console.error("Error on server:", theError);
       console.error("Override onError(error) to handle server errors");
+      throw theError;
     }
-    throw theError;
   }
 
   /**
