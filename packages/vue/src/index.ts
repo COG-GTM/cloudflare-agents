@@ -251,6 +251,9 @@ export function useAgent<State>(
   let previousName: string | null = null;
   let previousAgent: string | null = null;
 
+  // Guard against async operations completing after scope disposal
+  let disposed = false;
+
   // Ready promise management
   let resolveReady: () => void;
   let readyPromise = new Promise<void>((r) => {
@@ -539,6 +542,7 @@ export function useAgent<State>(
     // Async query: resolve first, then connect
     userQuery()
       .then((result: QueryObject) => {
+        if (disposed) return;
         createSocket(result);
       })
       .catch((err: unknown) => {
@@ -563,6 +567,7 @@ export function useAgent<State>(
 
   // Cleanup on scope disposal (component unmount)
   onScopeDispose(() => {
+    disposed = true;
     destroySocket();
   });
 
